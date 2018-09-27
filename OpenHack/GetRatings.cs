@@ -34,21 +34,12 @@ namespace OpenHack
 
             var client = new DocumentClient(new Uri("https://openhack-team-8.documents.azure.com:443/"), authKey);
             var collectionUri = UriFactory.CreateDocumentCollectionUri("ProductRatings", "Items");
-            var userId = req.Query["userId"];
-            var sqlQuery = new SqlQuerySpec("SELECT * FROM Items c WHERE c.userId=@userId",
-                new SqlParameterCollection(new[] {new SqlParameter("@userId", Guid.Parse(userId))}));
+            var userId = Guid.Parse(req.Query["userId"]);
 
-            var query = client.CreateDocumentQuery<RatingModel>(collectionUri, sqlQuery).AsDocumentQuery();
-               
-            var ratings = new List<FeedbackViewModel>();
-
-            while (query.HasMoreResults)
-            {
-                foreach (var rating in await query.ExecuteNextAsync<RatingModel>())
-                {
-                    ratings.Add(rating.ToViewModel());
-                }
-            }
+            var ratings = client.CreateDocumentQuery<RatingModel>(collectionUri)
+                .Where(x => x.UserId == userId)
+                .AsEnumerable()
+                .Select(x => x.ToViewModel());
 
             return new OkObjectResult(ratings);
         }

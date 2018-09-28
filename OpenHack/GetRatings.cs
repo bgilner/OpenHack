@@ -9,6 +9,8 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.WindowsAzure.Storage;
+using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace OpenHack
 {
@@ -23,6 +25,7 @@ namespace OpenHack
             HttpRequest req,
             ILogger log)
         {
+            //var connStr = Environment.GetEnvironmentVariable("ConnectionStrings:CosmosDBConnection");
 
             log.Log(LogLevel.Information, "C# HTTP trigger function processed a get ratings request.");
             var authKey = new SecureString();

@@ -1,0 +1,125 @@
+{
+	"info": {
+		"_postman_id": "4c83859e-f9cf-49c6-a2c0-b75439299481",
+		"name": "OpenHack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetProduct",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\": \"75542e38-563f-436f-adeb-f426f1dabb5c\"\r\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}/api/products/75542e38-563f-436f-adeb-f426f1dabb5c",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"products",
+						"75542e38-563f-436f-adeb-f426f1dabb5c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateRating",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": \"dc20a6fb-a91f-4192-874d-132493685376\",\r\n    \"productId\": \"5c25613a-a3c2-4ef3-8e02-9c335eb23204\",\r\n    \"locationName\": \"Amityville\",\r\n    \"rating\": 1,\r\n    \"userNotes\": \"Horrible!\"\r\n}"
+				},
+				"url": {
+					"raw": "{{endpoint}}/api/CreateRating",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"CreateRating"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRatings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{endpoint}}/api/GetRatings?userId=cc20a6fb-a91f-4192-874d-132493685376",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"GetRatings"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "cc20a6fb-a91f-4192-874d-132493685376"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRating",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Cca0vJ3Xa45ZT4kACdv9s7a4nfAesv7p5wwOpSpe/ntwZf6aaYBepg==",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{endpoint}}/api/GetRating?ratingId=c28336e8-b8ce-4852-8791-4d76013cc27c",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"api",
+						"GetRating"
+					],
+					"query": [
+						{
+							"key": "ratingId",
+							"value": "c28336e8-b8ce-4852-8791-4d76013cc27c"
+						},
+						{
+							"key": "code",
+							"value": "qNdQLb6Edv2yN90KJYejQNXsr4YOEFMdbvbxz3h3ma3UfS9fHrzKXbvBjTQWxtMJKnIwBqQ7V5qHdxOomCQxoQ==",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

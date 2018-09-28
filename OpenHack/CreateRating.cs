@@ -12,8 +12,6 @@ namespace OpenHack
 {
     public static class CreateRating
     {
-        private static readonly HttpClient _httpClient = new HttpClient();
-
         [FunctionName("CreateRating")]
         public static IActionResult Run(
             [HttpTrigger(AuthorizationLevel.Anonymous, nameof(HttpMethod.Post), Route = null)]
@@ -34,12 +32,12 @@ namespace OpenHack
                 return new BadRequestObjectResult($"Rating {feedback.UserId} is not between 0 and 5");
 
             //todo: inject from environment
-            var response = _httpClient.GetAsync($"https://serverlessohuser.trafficmanager.net/api/GetUser/?{nameof(feedback.UserId)}={feedback.UserId}").Result;
+            var response = Client.Instance.GetAsync($"{WrappedApi.GET_USER}/?{nameof(feedback.UserId)}={feedback.UserId}").Result;
             if (response.StatusCode != HttpStatusCode.OK)
                 return new BadRequestObjectResult($"Invalid user {feedback.UserId}");
        
             //todo: inject from environment
-            response = _httpClient.GetAsync($"https://serverlessohproduct.trafficmanager.net/api/GetProduct/?{nameof(feedback.ProductId)}={feedback.ProductId}").Result;
+            response = Client.Instance.GetAsync($"{WrappedApi.GET_PRODUCT}/?{nameof(feedback.ProductId)}={feedback.ProductId}").Result;
             if (response.StatusCode != HttpStatusCode.OK)
                 return new BadRequestObjectResult($"Invalid product: {feedback.ProductId}");
             

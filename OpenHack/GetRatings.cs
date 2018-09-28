@@ -9,8 +9,6 @@ using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
-using Microsoft.WindowsAzure.Storage;
-using LogLevel = Microsoft.Extensions.Logging.LogLevel;
 
 namespace OpenHack
 {
